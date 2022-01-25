@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InstagramUser;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreInstagramUserRequest;
 use App\Http\Requests\UpdateInstagramUserRequest;
 
@@ -16,15 +17,28 @@ class InstagramUserController extends Controller
     public function index()
     {
         $instagram_user = InstagramUser::all();
-        if(count($instagram_user) > 0) {
+
+        if($instagram_user!=null) {
             return view('Admin.instagram', [
-                'instagramUsers' => InstagramUser::all()
+                'instagramUsers' => $instagram_user
             ]);
         }else{
             return view('Admin.instagram', [
                 'instagramUsers' => null
             ]);
         }
+    }
+
+    public function login(Request $request){
+        $client_id = env('INSTAGRAM_CLIENT_ID');
+        $redirect_uri = env('INSTAGRAM_REDIRECT_URI');
+        $client_secret = env('INSTAGRAM_CLIENT_SECRET');
+        $code = request()->get('code');
+        $request->session()->put('code', $code);
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://graph.facebook.com/v12.0/oauth/access_token?client_id='. $client_id.'&redirect_uri='.$redirect_uri.'&client_secret='.$client_secret.'&code=' . $code);
+        dd($response->getBody()->getContents());
+
     }
 
     /**

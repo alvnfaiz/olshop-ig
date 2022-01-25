@@ -28,6 +28,7 @@ Route::middleware('admin')->name('admin.')->prefix('/admin')->group(function () 
     })->name('dashboard');
 
     Route::prefix('/instagram')->name('instagram.')->group(function () {
+        Route::get('/login', [InstagramUserController::class, 'login'])->name('login');
         Route::get('/', [InstagramUserController::class, 'index'])->name('index');
         Route::get('/create', [InstagramUserController::class, 'create'])->name('create');
         Route::post('/', [InstagramUserController::class, 'store'])->name('store');
@@ -35,6 +36,12 @@ Route::middleware('admin')->name('admin.')->prefix('/admin')->group(function () 
         Route::get('/{id}/edit', [InstagramUserController::class, 'edit'])->name('edit');
         Route::put('/{id}', [InstagramUserController::class, 'update'])->name('update');
         Route::delete('/{id}', [InstagramUserController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('/message')->name('message')->group(function () {
+        Route::get('/', function () {
+            return view('admin.message.index');
+        })->name('index');
     });
     
     

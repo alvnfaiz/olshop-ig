@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class InstagramClient extends Migration
+class CreateCallbacksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class InstagramClient extends Migration
      */
     public function up()
     {
-        Schema::create('instagram_client', function (Blueprint $table) {
+        Schema::create('callbacks', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('count_activity');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('value');
+            
         });
     }
 
@@ -28,6 +28,6 @@ class InstagramClient extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instagram_client');
+        Schema::dropIfExists('callbacks');
     }
 }

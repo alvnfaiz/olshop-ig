@@ -15,9 +15,14 @@ class Product extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-
-            $table->timestamps();
-
+            $table->foreignId('admin_id')->constrained('users');
+            $table->string('name');
+            $table->string('image');
+            $table->string('description');
+            $table->double('price', 10, 2);
+            $table->integer('stock');
+            $table->integer('total_sold');
+            $table->double('discount_price', 10, 2);
         });
     }
 

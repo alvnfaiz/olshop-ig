@@ -12,6 +12,7 @@ class InstagramUser extends Model
     protected $fillable = [
         'id',
         'username',
+        'password',
         'full_name',
         'profile_picture',
         'bio',
@@ -22,12 +23,12 @@ class InstagramUser extends Model
         'followed_by_count',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
-    protected $hidden = [
-        'password',
-    ];
+    // protected $hidden = [
+    //     'password',
+    // ];
 }

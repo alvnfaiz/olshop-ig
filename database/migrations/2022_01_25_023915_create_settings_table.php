@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class InstagramClient extends Migration
+class CreateSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class InstagramClient extends Migration
      */
     public function up()
     {
-        Schema::create('instagram_client', function (Blueprint $table) {
-            $table->id();
-            $table->string('username');
-            $table->string('count_activity');
-            $table->timestamps();
+        Schema::create('settings', function (Blueprint $table) {
+            $table->id('settings_id');
+            $table->string('settings_name');
+            $table->string('settings_value');
         });
     }
 
@@ -28,6 +27,6 @@ class InstagramClient extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instagram_client');
+        Schema::dropIfExists('settings');
     }
 }

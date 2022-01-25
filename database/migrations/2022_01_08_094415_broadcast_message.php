@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class InstagramClient extends Migration
+class BroadcastMessage extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class InstagramClient extends Migration
      */
     public function up()
     {
-        Schema::create('instagram_client', function (Blueprint $table) {
+        Schema::create('broadcast_message', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('count_activity');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class InstagramClient extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instagram_client');
+        Schema::dropIfExists('broadcast_message');
     }
 }
