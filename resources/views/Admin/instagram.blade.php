@@ -43,25 +43,26 @@
                                                 <div class="grid grid-cols-6 gap-6">
                                                     <div class="col-span-6 sm:col-span-4">
                                                         <label class="block text-sm font-medium text-gray-700" for="username">Username</label>
-                                                        <input class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="username" type="text" name="username" value="{{ $instagramUsers[0]->username }}">
+                                                        <input class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="username" type="text" name="username" value="{{ if($instagramUsers!=null)$instagramUsers[0]->username }}">
                                                     </div>
                                     
                                                     <div class="col-span-6 sm:col-span-4">
                                                         <label class="block text-sm font-medium text-gray-700" for="password">Password</label>
-                                                        <input class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="password" type="password" name="password"  value="{{ $instagramUsers[0]->password }}">
+                                                        <input class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="password" type="password" name="password"  value="{{ if($instagramUsers!=null)$instagramUsers[0]->password }}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                             <div class="flex items-center justify-end px-4 py-3 text-right shadow bg-gray-50 sm:px-6 sm:rounded-bl-md sm:rounded-br-md">
-                                            <div class="mr-3 text-sm text-gray-600">
-                                </div>
-                                    
-                                <button type="submit" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25">
-                                    Save
-                                </button>
+                                                <div class="mr-3 text-sm text-gray-600">
+                                                    //if input success show success message
+                                                    
                                                 </div>
-                                                    </form>
+                                                <button type="submit" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
