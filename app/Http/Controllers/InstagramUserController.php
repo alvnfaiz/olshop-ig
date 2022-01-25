@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InstagramUser;
 use Illuminate\Http\Request;
+use App\Models\InstagramUser;
+use App\Models\CallbacksModel;
 use App\Http\Requests\StoreInstagramUserRequest;
 use App\Http\Requests\UpdateInstagramUserRequest;
 
@@ -37,7 +38,18 @@ class InstagramUserController extends Controller
         $request->session()->put('code', $code);
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://graph.facebook.com/v12.0/oauth/access_token?client_id='. $client_id.'&redirect_uri='.$redirect_uri.'&client_secret='.$client_secret.'&code=' . $code);
-        dd($response->getBody()->getContents());
+        $access_token = json_decode($response->getBody())->access_token;
+        CallbacksModel::where('name', 'access_token')
+            ->update(['value'=>$access_token]);
+        CallbacksModel::where('name', 'token_type')
+            ->update(['value'=>json_decode($response->getBody())->token_type]);
+        CallbacksModel::where('name', 'expires_in')
+            ->update(['value'=>json_decode($response->getBody())->expires_in]);
+        $data = CallbacksModel::all();
+        dd($data);
+        //dd($response->getBody()->getContents());
+        // header("Content-Type: application/json");
+        // return json_encode($response->getBody()->getContents());
 
     }
 
@@ -48,7 +60,7 @@ class InstagramUserController extends Controller
      */
     public function create()
     {
-        $instagram_user = DB::table('instagram_users')->get()[1];
+        $instagram_user = InstagramUser::get()[1];
         return view('Admin.instagram.create', [
             'instagram_user' => $instagram_user
         ]);

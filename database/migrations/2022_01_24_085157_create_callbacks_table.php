@@ -16,7 +16,7 @@ class CreateCallbacksTable extends Migration
         Schema::create('callbacks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('value');
+            $table->mediumText('value')->nullable();
             
         });
     }

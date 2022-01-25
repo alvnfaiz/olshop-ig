@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class callbacksSeed extends Seeder
 {
@@ -13,25 +14,25 @@ class callbacksSeed extends Seeder
      */
     public function run()
     {
-        DB::table('settings')->insert([
-            'settings_id' => 1,
-            'settings_name' => 'access_token',
-            'settings_value' => null,
+        DB::table('callbacks')->insert([
+            'id' => 1,
+            'name' => 'access_token',
+            'value' => null,
         ]);
-        DB::table('settings')->insert([
-            'settings_id' => 2,
-            'settings_name' => 'token_type',
-            'settings_value' => null,
+        DB::table('callbacks')->insert([
+            'id' => 2,
+            'name' => 'token_type',
+            'value' => null,
         ]);
-        DB::table('settings')->insert([
-            'settings_id' => 3,
-            'settings_name' => 'expires_in',
-            'settings_value' => null,
+        DB::table('callbacks')->insert([
+            'id' => 3,
+            'name' => 'expires_in',
+            'value' => null,
         ]);
-        DB::table('settings')->insert([
-            'settings_id' => 4,
-            'settings_name' => 'instagram_id',
-            'settings_value' => null,
+        DB::table('callbacks')->insert([
+            'id' => 4,
+            'name' => 'instagram_id',
+            'value' => null,
         ]);
     }
 }
